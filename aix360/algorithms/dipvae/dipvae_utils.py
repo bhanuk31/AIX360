@@ -205,6 +205,8 @@ class VAE(nn.Module):
 
     def neg_elbo(self, x, beta=None):
         recon, mu_z, std_z = self.forward(x)
+        #print (x.size())
+        #print (recon.size())
         recon = torch.sigmoid(recon)
         kl_z = self._kl_divergence_z(mu_z, std_z)
         if beta is not None:
